@@ -7,14 +7,14 @@ WORKDIR /app
 # Copy package.json and package-lock.json (or yarn.lock)
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install dependencies in non-interactive mode
+RUN npm install --quiet
 
 # Copy the rest of the application code
 COPY . .
 
-# Build the React application
-RUN npm run build
+# Build the React application in non-interactive mode
+RUN npm run build --silent
 
 # Step 2: Serve the React application
 FROM nginx:alpine
